@@ -49,11 +49,16 @@ class _MyHomePageState extends State<MyHomePage> {
           future: futurePokemon,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data!.name);
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(snapshot.data!.name),
+                  Image.network(snapshot.data!.image)
+                ],
+              );
             } else if (snapshot.hasError) {
               return Text('{$snapshot.error}');
             }
-
             return const CircularProgressIndicator();
           },
         ),
