@@ -9,8 +9,8 @@ class Type {
 
   factory Type.fromJson(Map<String, dynamic> json) {
     return Type(
-      id: json['types']['slot'],
-      name: json['types']['type']['name'],
+      id: json['slot'],
+      name: json['type']['name'],
     );
   }
 }

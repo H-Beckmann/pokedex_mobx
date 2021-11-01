@@ -19,7 +19,7 @@ class Pokemon {
     return Pokemon(
       id: json['id'],
       name: json['pokemon']['name'],
-      types: json['types'].cast<Type>(),
+      types: json['types'].map((data) => Type.fromJson(data)).toList().cast<Type>(),
       versionGroup: json['version_group']['name'],
       image: json['sprites']['front_default']
     );
