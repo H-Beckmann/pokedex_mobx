@@ -11,3 +11,15 @@ Future<Pokemon> fetchPokemon(int id) async {
     throw Exception('Failed to load a Pokemon');
   }
 }
+
+Future<List<Pokemon>> fetchAll() async{
+  final http.Response response =
+      await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon?limit20'));
+  if (response.statusCode == 200) {
+    var r = json.decode(response.body);
+    List<Pokemon> list = List<Pokemon>.from(r['results'].map((Pokemon)=> Pokemon.fromJson(Pokemon)));
+    return list;
+  } else {
+    throw Exception('Failed to load a Pokemon');
+  }
+}

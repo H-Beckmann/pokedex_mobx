@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    futurePokemon = fetchPokemon(865);
+    futurePokemon = fetchPokemon(6);
   }
 
   @override
