@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    futurePokemon = fetchPokemon(6);
+    futurePokemon = fetchPokemon(865);
   }
 
   @override
@@ -25,8 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        leading: const Icon(Icons.catching_pokemon),
-        
+        leading: const Icon(Icons.catching_pokemon)
       ),
       backgroundColor: Colors.grey[200],
       body: Center(
