@@ -59,7 +59,7 @@ class _PokemonListState extends State<PokemonList> {
                     return GridView.builder(
                         padding: const EdgeInsets.all(10.0),
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
+                          crossAxisCount: 3,
                           crossAxisSpacing: 10.0,
                           mainAxisSpacing: 10.0,
                         ),
@@ -77,7 +77,7 @@ class _PokemonListState extends State<PokemonList> {
                                     FadeInImage.memoryNetwork(
                                       placeholder: kTransparentImage,
                                       image: snapshot.data![index].image,
-                                      height: 150.0,
+                                      height: 100.0,
                                       fit: BoxFit.cover,
                                     ),
                                     Text(snapshot.data![index].name)
@@ -117,7 +117,8 @@ class _PokemonListState extends State<PokemonList> {
                         Padding(
                           padding: EdgeInsets.only(top: 8.0),
                           child: Text("Catching all pokemons..."),
-                        )
+                        ),
+                        Text("Spoiler: It will take a while")
                       ],
                     )
                   );

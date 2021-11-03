@@ -39,6 +39,7 @@ dependencies:
   transparent_image: 
   mobx:
   flutter_mobx:
+  dio: 
 
 dev_dependencies:
   flutter_test:
