@@ -77,7 +77,7 @@ class _PokemonListState extends State<PokemonList> {
                                     FadeInImage.memoryNetwork(
                                       placeholder: kTransparentImage,
                                       image: snapshot.data![index].image,
-                                      height: 100.0,
+                                      height: 90.0,
                                       fit: BoxFit.cover,
                                     ),
                                     Text(snapshot.data![index].name)
