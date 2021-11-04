@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:pokedex_mobx/models/pokemon.dart';
 import 'package:pokedex_mobx/models/type_color.dart';
 import 'package:pokedex_mobx/repositories/pokemon_repository.dart';
@@ -24,10 +25,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.title),
-        leading: const Icon(Icons.catching_pokemon)
-      ),
+          centerTitle: true,
+          title: Text(widget.title),
+          leading: const Icon(Icons.catching_pokemon)),
       backgroundColor: Colors.grey[200],
       body: Center(
         child: FutureBuilder<Pokemon>(
@@ -39,18 +39,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Text(snapshot.data!.name),
                   Image.network(snapshot.data!.image),
-                  SizedBox(
-                    height: 100,
-                    child: ListView.builder(
-                      itemCount: snapshot.data!.types.length,
-                      itemBuilder: (context, index){
-                        return ListTile(
-                          title: Text(snapshot.data!.types[index].name),
-                          tileColor: fromHex(getColor(snapshot.data!.types[index].name))
-                        );
-                      }
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                    child: SizedBox(
+                      height: 55,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.types.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              color: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: fromHex(getColor(snapshot.data!.types[index].name)),
+                                  border: Border.all(color: Colors.black, width: 2)
+                                ),
+                                height: 60,
+                                width: 120,
+                                padding: const EdgeInsets.fromLTRB(25, 10, 10, 10),
+                                child: Text(
+                                  snapshot.data!.types[index].name.toUpperCase(),
+                                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                ),
+                                ),
+                            );
+                          }),
                     ),
-                  )
+                  ),
+                  Text("HP: ${snapshot.data!.hp}"),
+                  Text("Peso: ${snapshot.data!.weight}")
                 ],
               );
             } else if (snapshot.hasError) {

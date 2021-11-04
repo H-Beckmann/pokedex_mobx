@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const PokemonList(title: 'Pokedex'),
+      home: const MyHomePage(title: 'Pokedex'),
     );
   }
 }
