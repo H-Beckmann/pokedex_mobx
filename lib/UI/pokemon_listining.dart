@@ -66,24 +66,38 @@ class _PokemonListState extends State<PokemonList> {
                         itemCount: 150,
                         itemBuilder: (context, index) {
                           if (index < 150) {
-                            return DecoratedBox(
+                            return Container(
+                              padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  gradient: snapshot.data![index].types.length>1 ? LinearGradient(
+                                    begin: const Alignment(-1, -1),
+                                    end: const Alignment(1, 1),
+                                    colors: [fromHex(getColor(snapshot.data![index].types[0].name)), fromHex(getColor(snapshot.data![index].types[1].name))],
+                                  ) : LinearGradient(
+                                    begin: const Alignment(-1, -1),
+                                    end: const Alignment(1, 1),
+                                    colors: [fromHex(getColor(snapshot.data![index].types[0].name)), fromHex(getColor(snapshot.data![index].types[0].name))],
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
-                                  border: getBorder(snapshot.data![index].types[0].name)),
-                              child: GestureDetector(
-                                child: Column(
-                                  children: [
-                                    FadeInImage.memoryNetwork(
-                                      placeholder: kTransparentImage,
-                                      image: snapshot.data![index].image,
-                                      height: 90.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    Text(snapshot.data![index].name)
-                                  ],
+                                  color: Colors.white,
                                 ),
-                                onTap: () {},
+                                child: GestureDetector(
+                                  child: Column(
+                                    children: [
+                                      FadeInImage.memoryNetwork(
+                                        placeholder: kTransparentImage,
+                                        image: snapshot.data![index].image,
+                                        height: 90.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Text(snapshot.data![index].name)
+                                    ],
+                                  ),
+                                  onTap: () {},
+                                ),
                               ),
                             );
                           } else {
@@ -127,26 +141,5 @@ class _PokemonListState extends State<PokemonList> {
             ),
           ],
         ));
-  }
-
-  Border getBorder(String color) {
-      return Border(
-      bottom: BorderSide(
-        color: fromHex(getColor(color)), 
-        width: 3
-      ),
-      left: BorderSide(
-        color: fromHex(getColor(color)), 
-        width: 3
-      ),
-      top: BorderSide(
-        color: fromHex(getColor(color)), 
-        width: 3
-      ),
-      right: BorderSide(
-        color: fromHex(getColor(color)), 
-        width: 3
-      ),
-    );
   }
 }
