@@ -35,37 +35,40 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(snapshot.data!.name),
                   Image.network(snapshot.data!.image),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
-                    child: SizedBox(
-                      height: 55,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: snapshot.data!.types.length,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              color: Colors.transparent,
-                              shadowColor: Colors.transparent,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: fromHex(getColor(snapshot.data!.types[index].name)),
-                                  border: Border.all(color: Colors.black, width: 2)
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                          snapshot.data!.types.length,
+                          (index) => Card(
+                                color: Colors.transparent,
+                                shadowColor: Colors.transparent,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: fromHex(getColor(
+                                          snapshot.data!.types[index].name)),
+                                      border: Border.all(
+                                          color: Colors.black, width: 2)),
+                                  height: 40,
+                                  width: 100,
+                                  child: Center(
+                                    child: Text(
+                                      snapshot.data!.types[index].name
+                                          .toUpperCase(),
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                                 ),
-                                height: 60,
-                                width: 120,
-                                padding: const EdgeInsets.fromLTRB(25, 10, 10, 10),
-                                child: Text(
-                                  snapshot.data!.types[index].name.toUpperCase(),
-                                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                ),
-                                ),
-                            );
-                          }),
+                              )),
                     ),
                   ),
                   Text("HP: ${snapshot.data!.hp}"),
