@@ -48,13 +48,14 @@ class _PokemonListState extends State<PokemonList> {
               style: const TextStyle(color: Colors.black, fontSize: 18.0),
               onSubmitted: (text) {
                 if (searchController.text.isNotEmpty) {
-                  pokeList = fetchByName(text);
+                  setState(() {
+                    pokeList = fetchByName(text);
+                  });
                 } else {
-                  pokeList = fetchAll(150);
+                  setState(() {
+                    pokeList = fetchAll(150);
+                  });
                 }
-                setState(() {
-                  pokeList;
-                });
               },
             ),
           ),
@@ -76,28 +77,37 @@ class _PokemonListState extends State<PokemonList> {
                       return Container(
                         padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                            gradient: snapshot.data![index].types.length > 1
-                                ? LinearGradient(
-                                    begin: const Alignment(-1, -1),
-                                    end: const Alignment(1, 1),
-                                    colors: [
-                                      fromHex(getColor(
-                                          snapshot.data![index].types[0].name)),
-                                      fromHex(getColor(
-                                          snapshot.data![index].types[1].name))
-                                    ],
-                                  )
-                                : LinearGradient(
-                                    begin: const Alignment(-1, -1),
-                                    end: const Alignment(1, 1),
-                                    colors: [
-                                      fromHex(getColor(
-                                          snapshot.data![index].types[0].name)),
-                                      fromHex(getColor(
-                                          snapshot.data![index].types[0].name))
-                                    ],
-                                  ),
-                            borderRadius: BorderRadius.circular(15)),
+                          gradient: snapshot.data![index].types.length > 1
+                              ? LinearGradient(
+                                  begin: const Alignment(-1, -1),
+                                  end: const Alignment(1, 1),
+                                  colors: [
+                                    fromHex(
+                                      getColor(
+                                          snapshot.data![index].types[0].name),
+                                    ),
+                                    fromHex(
+                                      getColor(
+                                          snapshot.data![index].types[1].name),
+                                    ),
+                                  ],
+                                )
+                              : LinearGradient(
+                                  begin: const Alignment(-1, -1),
+                                  end: const Alignment(1, 1),
+                                  colors: [
+                                    fromHex(
+                                      getColor(
+                                          snapshot.data![index].types[0].name),
+                                    ),
+                                    fromHex(
+                                      getColor(
+                                          snapshot.data![index].types[0].name),
+                                    ),
+                                  ],
+                                ),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
