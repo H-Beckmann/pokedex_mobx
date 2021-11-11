@@ -11,7 +11,6 @@ Future<Pokemon> fetchPokemon(int id) async {
   }
 }
 
-//TODO: criar metodo de pesquisa por nome
 Future<List<Pokemon>> fetchByName(String name) async {
   List<String> similarResults = getSimilarResults(name);
   List<Pokemon> list = List.empty(growable: true);
