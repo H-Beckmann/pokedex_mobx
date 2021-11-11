@@ -45,9 +45,10 @@ class _PokemonListState extends State<PokemonList> {
                   borderRadius: BorderRadius.all(Radius.circular(10.0))
                 ),
               ),
-              style: const TextStyle(color: Colors.white, fontSize: 18.0),
+              style: const TextStyle(color: Colors.black, fontSize: 18.0),
               textAlign: TextAlign.center,
-              onSubmitted: (text){
+              onSubmitted: (text) {
+                pokeList = fetchByName(text);
               },
             ),
           ),

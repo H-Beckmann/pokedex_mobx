@@ -15,3 +15,14 @@ List<String> getList() {
     "Aerodactyl","Snorlax","Articuno","Zapdos","Moltres","Dratini","Dragonair","Dragonite","Mewtwo","Mew"];
 }
 
+List<String> getSimilarResults(String name) {
+  List<String> aux = List.empty(growable: true);
+
+  getList().forEach((element) {
+    if (element.contains(name)) {
+      aux.add(element);
+    }
+  });
+
+  return aux;
+}
