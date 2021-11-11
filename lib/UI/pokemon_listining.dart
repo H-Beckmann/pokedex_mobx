@@ -14,6 +14,7 @@ class PokemonList extends StatefulWidget {
 
 class _PokemonListState extends State<PokemonList> {
   late Future<List<Pokemon>> pokeList;
+  TextEditingController searchController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -33,6 +34,7 @@ class _PokemonListState extends State<PokemonList> {
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: TextField(
+              controller: searchController,
               decoration: const InputDecoration(
                 prefixIcon: Icon(
                   Icons.search,
@@ -44,9 +46,15 @@ class _PokemonListState extends State<PokemonList> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
               ),
               style: const TextStyle(color: Colors.black, fontSize: 18.0),
-              textAlign: TextAlign.center,
               onSubmitted: (text) {
+                if (searchController.text.isNotEmpty) {
                   pokeList = fetchByName(text);
+                } else {
+                  pokeList = fetchAll(150);
+                }
+                setState(() {
+                  pokeList;
+                });
               },
             ),
           ),
@@ -63,77 +71,76 @@ class _PokemonListState extends State<PokemonList> {
                       crossAxisSpacing: 10.0,
                       mainAxisSpacing: 10.0,
                     ),
-                    itemCount: 150,
+                    itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
-                      if (index < 150) {
-                        return Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                              gradient: snapshot.data![index].types.length > 1
-                                  ? LinearGradient(
-                                      begin: const Alignment(-1, -1),
-                                      end: const Alignment(1, 1),
-                                      colors: [
-                                        fromHex(getColor(snapshot
-                                            .data![index].types[0].name)),
-                                        fromHex(getColor(snapshot
-                                            .data![index].types[1].name))
-                                      ],
-                                    )
-                                  : LinearGradient(
-                                      begin: const Alignment(-1, -1),
-                                      end: const Alignment(1, 1),
-                                      colors: [
-                                        fromHex(getColor(snapshot
-                                            .data![index].types[0].name)),
-                                        fromHex(getColor(snapshot
-                                            .data![index].types[0].name))
-                                      ],
-                                    ),
-                              borderRadius: BorderRadius.circular(15)),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              child: Column(
-                                children: [
-                                  FadeInImage.memoryNetwork(
-                                    placeholder: kTransparentImage,
-                                    image: snapshot.data![index].image,
-                                    height: 90.0,
-                                    fit: BoxFit.cover,
+                      return Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            gradient: snapshot.data![index].types.length > 1
+                                ? LinearGradient(
+                                    begin: const Alignment(-1, -1),
+                                    end: const Alignment(1, 1),
+                                    colors: [
+                                      fromHex(getColor(
+                                          snapshot.data![index].types[0].name)),
+                                      fromHex(getColor(
+                                          snapshot.data![index].types[1].name))
+                                    ],
+                                  )
+                                : LinearGradient(
+                                    begin: const Alignment(-1, -1),
+                                    end: const Alignment(1, 1),
+                                    colors: [
+                                      fromHex(getColor(
+                                          snapshot.data![index].types[0].name)),
+                                      fromHex(getColor(
+                                          snapshot.data![index].types[0].name))
+                                    ],
                                   ),
-                                  Text(snapshot.data![index].name)
-                                ],
-                              ),
-                              onTap: () {},
+                            borderRadius: BorderRadius.circular(15)),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.white,
+                          ),
+                          child: GestureDetector(
+                            child: Column(
+                              children: [
+                                FadeInImage.memoryNetwork(
+                                  placeholder: kTransparentImage,
+                                  image: snapshot.data![index].image,
+                                  height: 90.0,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(snapshot.data![index].name)
+                              ],
                             ),
+                            onTap: () {},
                           ),
-                        );
-                      } else {
-                        return GestureDetector(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const <Widget>[
-                              Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 70.0,
-                              ),
-                              Text(
-                                "Carregar mais...",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 22.0),
-                              ),
-                            ],
-                          ),
-                        );
-                      }
+                        ),
+                      );
+                      // } else {
+                      //   return GestureDetector(
+                      //     child: Column(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: const <Widget>[
+                      //         Icon(
+                      //           Icons.add,
+                      //           color: Colors.white,
+                      //           size: 70.0,
+                      //         ),
+                      //         Text(
+                      //           "Carregar mais...",
+                      //           style: TextStyle(
+                      //               color: Colors.white, fontSize: 22.0),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   );
+                      // }
                     },
                   );
-                }else if (snapshot.hasError) {
+                } else if (snapshot.hasError) {
                   return Text('{$snapshot.error}');
                 }
                 return Center(

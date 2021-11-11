@@ -19,7 +19,7 @@ List<String> getSimilarResults(String name) {
   List<String> aux = List.empty(growable: true);
 
   getList().forEach((element) {
-    if (element.contains(name)) {
+    if (element.toLowerCase().contains(name.toLowerCase())) {
       aux.add(element);
     }
   });

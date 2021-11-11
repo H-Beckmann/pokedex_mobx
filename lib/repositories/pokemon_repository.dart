@@ -15,7 +15,7 @@ Future<List<Pokemon>> fetchByName(String name) async {
   List<String> similarResults = getSimilarResults(name);
   List<Pokemon> list = List.empty(growable: true);
 
-  similarResults.forEach((element) async {
+  for (var element in similarResults){
     var pokeName = element.toLowerCase();
     var response = await Dio().get('https://pokeapi.co/api/v2/pokemon/$pokeName/');
 
@@ -24,7 +24,7 @@ Future<List<Pokemon>> fetchByName(String name) async {
     } else {
       throw Exception('Failed to catch the Pokemon by name');
     }
-  });
+  }
 
   return list;
 }
