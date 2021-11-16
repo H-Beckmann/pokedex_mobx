@@ -25,9 +25,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          title: Text(widget.title),
-          leading: const Icon(Icons.catching_pokemon)),
+        centerTitle: true,
+        title: Text(widget.title),
+        leading: const Icon(Icons.catching_pokemon),
+      ),
       backgroundColor: Colors.grey[200],
       body: Center(
         child: FutureBuilder<Pokemon>(
@@ -45,30 +46,29 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
-                          snapshot.data!.types.length,
-                          (index) => Card(
-                                color: Colors.transparent,
-                                shadowColor: Colors.transparent,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: fromHex(getColor(
-                                          snapshot.data!.types[index].name)),
-                                      border: Border.all(
-                                          color: Colors.black, width: 2)),
-                                  height: 40,
-                                  width: 100,
-                                  child: Center(
-                                    child: Text(
-                                      snapshot.data!.types[index].name
-                                          .toUpperCase(),
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                              )),
+                        snapshot.data!.types.length,
+                        (index) => Card(
+                          color: Colors.transparent,
+                          shadowColor: Colors.transparent,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: fromHex(
+                                    getColor(snapshot.data!.types[index].name)),
+                                border:
+                                    Border.all(color: Colors.black, width: 2)),
+                            height: 40,
+                            width: 100,
+                            child: Center(
+                              child: Text(
+                                snapshot.data!.types[index].name.toUpperCase(),
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   Text("HP: ${snapshot.data!.hp}"),
