@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:pokedex_mobx/models/pokemon.dart';
 import 'package:pokedex_mobx/models/type_color.dart';
 import 'package:pokedex_mobx/repositories/pokemon_repository.dart';
+import 'package:pokedex_mobx/stores/searchStore/search_store.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class PokemonList extends StatefulWidget {
@@ -18,8 +22,11 @@ class _PokemonListState extends State<PokemonList> {
   @override
   void initState() {
     super.initState();
-    pokeList = fetchAll(150);
+    pokeList = searchStore.pokeGet("");
   }
+
+  late ReactionDisposer disposer;
+  SearchStore searchStore = SearchStore();
 
   @override
   Widget build(BuildContext context) {
@@ -33,33 +40,28 @@ class _PokemonListState extends State<PokemonList> {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: TextField(
-              controller: searchController,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Colors.grey,
+            child: Observer(builder: (_) {
+              return TextField(
+                controller: searchController,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                  ),
+                  labelText: "Pesquise aqui",
+                  labelStyle: TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),
-                labelText: "Pesquise aqui",
-                labelStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              ),
-              style: const TextStyle(color: Colors.black, fontSize: 18.0),
-              onSubmitted: (text) {
-                if (searchController.text.isNotEmpty) {
-                  setState(() {
-                    pokeList = fetchByName(text);
-                  });
-                } else {
-                  setState(() {
-                    pokeList = fetchAll(150);
-                  });
+                style: const TextStyle(color: Colors.black, fontSize: 18.0),
+                onSubmitted: (value){
+                  pokeList = searchStore.pokeGet(value);
                 }
-              },
-            ),
+              );
+            },),
           ),
-          Expanded(
+          Observer(builder: (_){
+            return Expanded(
             child: FutureBuilder<List<Pokemon>>(
               future: pokeList,
               builder: (context, snapshot) {
@@ -168,9 +170,15 @@ class _PokemonListState extends State<PokemonList> {
                 );
               },
             ),
-          ),
+          );
+          })
         ],
       ),
     );
+  }
+  @override
+  void dispose() {
+    disposer();
+    super.dispose();
   }
 }
