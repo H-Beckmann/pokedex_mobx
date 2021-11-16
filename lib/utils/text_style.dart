@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class myTextStyleBase {
+  static final stats = GoogleFonts.poppins(
+    color: Color(0xFFEE8130),
+    fontSize: 14.0,
+    fontWeight: FontWeight.bold,
+  );
+  static final stats_text = GoogleFonts.poppins(
+    color: Color(0xFF212121),
+    fontSize: 14.0,
+  );
+  static final title = GoogleFonts.poppins(
+    color: Colors.white,
+    fontSize: 26.0,
+    fontWeight: FontWeight.bold,
+  );
+  static final subtitle = GoogleFonts.poppins(
+    color: Colors.white,
+    fontSize: 14.0,
+    fontWeight: FontWeight.bold,
+  );
+  static final atribute = GoogleFonts.poppins(
+    color: Color(0xFF212121),
+    fontSize: 12.0,
+  );
+  static final atribute_title = GoogleFonts.poppins(
+    color: Color(0xFF666666),
+    fontSize: 10.0,
+  );
+}
