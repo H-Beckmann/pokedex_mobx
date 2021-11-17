@@ -16,14 +16,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Future<Pokemon> futurePokemon;
-
-  @override
-  void initState() {
-    super.initState();
-    futurePokemon = fetchPokemon(6);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     const EdgeInsets.symmetric(vertical: 16.0),
                                 child: Text(
                                   "Sobre",
-                                  style: myTextStyleBase.card_title,
+                                  style: myTextStyleBase.cardTitle(fromHex(getColor(widget.pokemon.types[0].name))),
                                 ),
                               ),
                               Row(
@@ -188,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     const EdgeInsets.symmetric(vertical: 16.0),
                                 child: Text(
                                   "Atributos Base",
-                                  style: myTextStyleBase.card_title,
+                                  style: myTextStyleBase.cardTitle(fromHex(getColor(widget.pokemon.types[0].name))),
                                 ),
                               ),
                               Row(
@@ -197,14 +189,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 children: [
                                   Column(
                                     children: [
-                                      Text('HP', style: myTextStyleBase.stats),
-                                      Text('ATK', style: myTextStyleBase.stats),
-                                      Text('DEF', style: myTextStyleBase.stats),
+                                      Text('HP', style: myTextStyleBase.stats(fromHex(getColor(widget.pokemon.types[0].name)))),
+                                      Text('ATK', style: myTextStyleBase.stats(fromHex(getColor(widget.pokemon.types[0].name)))),
+                                      Text('DEF', style: myTextStyleBase.stats(fromHex(getColor(widget.pokemon.types[0].name)))),
                                       Text('SATK',
-                                          style: myTextStyleBase.stats),
+                                          style: myTextStyleBase.stats(fromHex(getColor(widget.pokemon.types[0].name)))),
                                       Text('SDEF',
-                                          style: myTextStyleBase.stats),
-                                      Text('SPD', style: myTextStyleBase.stats),
+                                          style: myTextStyleBase.stats(fromHex(getColor(widget.pokemon.types[0].name)))),
+                                      Text('SPD', style: myTextStyleBase.stats(fromHex(getColor(widget.pokemon.types[0].name)))),
                                     ],
                                   ),
                                   Container(

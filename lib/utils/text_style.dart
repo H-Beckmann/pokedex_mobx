@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class myTextStyleBase {
-  static final stats = GoogleFonts.poppins(
-    color: Color(0xFFEE8130),
+
+  static TextStyle stats(color){
+    return GoogleFonts.poppins(
+    color: color,
     fontSize: 14.0,
     fontWeight: FontWeight.bold,
   );
+  }
   static final stats_text = GoogleFonts.poppins(
     color: Color(0xFF212121),
     fontSize: 14.0,
@@ -31,9 +34,12 @@ class myTextStyleBase {
   );
   static final type_name = GoogleFonts.poppins(
       color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold);
-  static final card_title = GoogleFonts.poppins(
-    color: Color(0xFFEE8130),
+
+  static TextStyle cardTitle(color){
+    return GoogleFonts.poppins(
+    color:color,
     fontSize: 18.0,
     fontWeight: FontWeight.bold,
   );
+  }
 }
