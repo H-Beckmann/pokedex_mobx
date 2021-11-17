@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            print('Voltar a Tela Inicial');
+                            Navigator.pop(context);
                           },
                           iconSize: 32,
                           icon: const Icon(Icons.arrow_back_outlined),
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Icon(
                                             Icons
                                                 .swap_horizontal_circle_outlined,
-                                            color: Color(0xFF212121),
+                                            color: Color(0xFF212121), //ISSO
                                             size: 16,
                                           ),
                                           Text(
@@ -154,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 32.0),
                                     height: 40,
-                                    child: VerticalDivider(
+                                    child: VerticalDivider( //ISSO
                                         color: Color(0xFFE0E0E0)),
                                   ),
                                   Column(
@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         children: [
                                           Icon(
                                             Icons.height,
-                                            color: Color(0xFF212121),
+                                            color: Color(0xFF212121), //ISSO
                                             size: 16,
                                           ),
                                           Text(
@@ -206,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   Container(
                                     height: 120,
-                                    child: VerticalDivider(
+                                    child: VerticalDivider( //ISSO
                                         color: Color(0xFFE0E0E0)),
                                   ),
                                   Column(
