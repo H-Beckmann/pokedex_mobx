@@ -50,19 +50,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           widget.pokemon.name.capitalize(),
                           style: myTextStyleBase.title,
                         ),
-                        if (snapshot.data!.id < 10) ...[
+                        if (widget.pokemon.id < 10) ...[
                           Text(
-                            '#00${snapshot.data!.id}',
+                            '#00${widget.pokemon.id}',
                             style: myTextStyleBase.subtitle,
                           ),
-                        ] else if (snapshot.data!.id < 100) ...[
+                        ] else if (widget.pokemon.id < 100) ...[
                           Text(
-                            '#0${snapshot.data!.id}',
+                            '#0${widget.pokemon.id}',
                             style: myTextStyleBase.subtitle,
                           ),
                         ] else ...[
                           Text(
-                            '#${snapshot.data!.id}',
+                            '#${widget.pokemon.id}',
                             style: myTextStyleBase.subtitle,
                           ),
                         ]
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Image.network(
-                    snapshot.data!.image,
+                    widget.pokemon.image,
                     width: 200.0,
                     height: 200.0,
                     fit: BoxFit.cover,
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: List.generate(
-                                  snapshot.data!.types.length,
+                                  widget.pokemon.types.length,
                                   (index) => Card(
                                     color: Colors.transparent,
                                     shadowColor: Colors.transparent,
@@ -100,14 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                         borderRadius: BorderRadius.circular(12),
                                         color: fromHex(
                                           getColor(
-                                              snapshot.data!.types[index].name),
+                                              widget.pokemon.types[index].name),
                                         ),
                                       ),
                                       height: 24,
                                       width: 55.2,
                                       child: Center(
                                         child: Text(
-                                          snapshot.data!.types[index].name
+                                          widget.pokemon.types[index].name
                                               .capitalize(),
                                           style: myTextStyleBase.type_name,
                                         ),
@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             size: 16,
                                           ),
                                           Text(
-                                            ' ${snapshot.data!.weight / 10} kg',
+                                            ' ${widget.pokemon.weight / 10} kg',
                                             style: myTextStyleBase.atribute,
                                           ),
                                         ],
@@ -167,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             size: 16,
                                           ),
                                           Text(
-                                            ' ${snapshot.data!.height / 10} m',
+                                            ' ${widget.pokemon.height / 10} m',
                                             style: myTextStyleBase.atribute,
                                           ),
                                         ],
@@ -211,17 +211,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   Column(
                                     children: [
-                                      Text('${snapshot.data!.hp}',
+                                      Text('${widget.pokemon.hp}',
                                           style: myTextStyleBase.stats_text),
-                                      Text('${snapshot.data!.attack}',
+                                      Text('${widget.pokemon.attack}',
                                           style: myTextStyleBase.stats_text),
-                                      Text('${snapshot.data!.defense}',
+                                      Text('${widget.pokemon.defense}',
                                           style: myTextStyleBase.stats_text),
-                                      Text('${snapshot.data!.spattack}',
+                                      Text('${widget.pokemon.spattack}',
                                           style: myTextStyleBase.stats_text),
-                                      Text('${snapshot.data!.spdefense}',
+                                      Text('${widget.pokemon.spdefense}',
                                           style: myTextStyleBase.stats_text),
-                                      Text('${snapshot.data!.speed}',
+                                      Text('${widget.pokemon.speed}',
                                           style: myTextStyleBase.stats_text),
                                     ],
                                   ),
