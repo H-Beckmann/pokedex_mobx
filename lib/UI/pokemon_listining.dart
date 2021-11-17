@@ -1,6 +1,9 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pokedex_mobx/UI/home_page.dart';
 import 'package:pokedex_mobx/models/pokemon.dart';
 import 'package:pokedex_mobx/models/type_color.dart';
 import 'package:pokedex_mobx/repositories/pokemon_repository.dart';
@@ -131,7 +134,9 @@ class _PokemonListState extends State<PokemonList> {
                                   Text(snapshot.data![index].name)
                                 ],
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push((_), MaterialPageRoute(builder: (context)=> MyHomePage(title: "", pokemon: snapshot.data![index]),));
+                              },
                             ),
                           ),
                         );

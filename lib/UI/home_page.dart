@@ -7,8 +7,9 @@ import "../utils/string_extension.dart";
 import "../utils/text_style.dart";
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, required this.pokemon}) : super(key: key);
   final String title;
+  final Pokemon pokemon;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -26,12 +27,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEE8130),
-      body: FutureBuilder<Pokemon>(
-        future: futurePokemon,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Center(
+      backgroundColor: fromHex(getColor(widget.pokemon.types[0].name)),
+      body: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -50,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.white,
                         ),
                         Text(
-                          snapshot.data!.name.capitalize(),
+                          widget.pokemon.name.capitalize(),
                           style: myTextStyleBase.title,
                         ),
                         if (snapshot.data!.id < 10) ...[
@@ -238,13 +235,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-            );
-          } else if (snapshot.hasError) {
-            return Text('{$snapshot.error}');
-          }
-          return const CircularProgressIndicator();
-        },
-      ),
+            )
     );
   }
 }
