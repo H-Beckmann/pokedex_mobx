@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_mobx/UI/pokemon_listining.dart';
 import 'package:pokedex_mobx/stores/searchStore/search_store.dart';
+import 'package:pokedex_mobx/repositories/pokemon_repository.dart';
 import 'package:provider/provider.dart';
 import 'UI/home_page.dart';
 
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.red,
         ),
-        home: const PokemonList(title: 'Pokedex'),
+        home: const MyHomePage(
+          title: 'Pokedex',
+        ),
       ),
     );
   }

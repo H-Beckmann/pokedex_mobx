@@ -53,10 +53,22 @@ class _MyHomePageState extends State<MyHomePage> {
                           snapshot.data!.name.capitalize(),
                           style: myTextStyleBase.title,
                         ),
-                        Text(
-                          '#00${snapshot.data!.id}',
-                          style: myTextStyleBase.subtitle,
-                        ),
+                        if (snapshot.data!.id < 10) ...[
+                          Text(
+                            '#00${snapshot.data!.id}',
+                            style: myTextStyleBase.subtitle,
+                          ),
+                        ] else if (snapshot.data!.id < 100) ...[
+                          Text(
+                            '#0${snapshot.data!.id}',
+                            style: myTextStyleBase.subtitle,
+                          ),
+                        ] else ...[
+                          Text(
+                            '#${snapshot.data!.id}',
+                            style: myTextStyleBase.subtitle,
+                          ),
+                        ]
                       ],
                     ),
                   ),
@@ -100,10 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         child: Text(
                                           snapshot.data!.types[index].name
                                               .capitalize(),
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
+                                          style: myTextStyleBase.type_name,
                                         ),
                                       ),
                                     ),
@@ -115,12 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     const EdgeInsets.symmetric(vertical: 16.0),
                                 child: Text(
                                   "Sobre",
-                                  style: TextStyle(
-                                    color: Color(0xFFEE8130),
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: myTextStyleBase.card_title,
                                 ),
                               ),
                               Row(
@@ -184,12 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     const EdgeInsets.symmetric(vertical: 16.0),
                                 child: Text(
                                   "Atributos Base",
-                                  style: TextStyle(
-                                    color: Color(0xFFEE8130),
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: myTextStyleBase.card_title,
                                 ),
                               ),
                               Row(
