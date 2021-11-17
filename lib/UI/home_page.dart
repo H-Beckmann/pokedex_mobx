@@ -35,38 +35,41 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          iconSize: 32,
-                          icon: const Icon(Icons.arrow_back_outlined),
-                          color: Colors.white,
-                        ),
-                        Text(
-                          widget.pokemon.name.capitalize(),
-                          style: myTextStyleBase.title,
-                        ),
-                        if (widget.pokemon.id < 10) ...[
-                          Text(
-                            '#00${widget.pokemon.id}',
-                            style: myTextStyleBase.subtitle,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            iconSize: 32,
+                            icon: const Icon(Icons.arrow_back_outlined),
+                            color: Colors.white,
                           ),
-                        ] else if (widget.pokemon.id < 100) ...[
                           Text(
-                            '#0${widget.pokemon.id}',
-                            style: myTextStyleBase.subtitle,
+                            widget.pokemon.name.capitalize(),
+                            style: myTextStyleBase.title,
                           ),
-                        ] else ...[
-                          Text(
-                            '#${widget.pokemon.id}',
-                            style: myTextStyleBase.subtitle,
-                          ),
-                        ]
-                      ],
+                          if (widget.pokemon.id < 10) ...[
+                            Text(
+                              '#00${widget.pokemon.id}',
+                              style: myTextStyleBase.subtitle,
+                            ),
+                          ] else if (widget.pokemon.id < 100) ...[
+                            Text(
+                              '#0${widget.pokemon.id}',
+                              style: myTextStyleBase.subtitle,
+                            ),
+                          ] else ...[
+                            Text(
+                              '#${widget.pokemon.id}',
+                              style: myTextStyleBase.subtitle,
+                            ),
+                          ]
+                        ],
+                      ),
                     ),
                   ),
                   Image.network(
@@ -132,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons
                                                 .swap_horizontal_circle_outlined,
                                             color: Color(0xFF212121), //ISSO
@@ -154,14 +157,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 32.0),
                                     height: 40,
-                                    child: VerticalDivider( //ISSO
+                                    child: const VerticalDivider( //ISSO
                                         color: Color(0xFFE0E0E0)),
                                   ),
                                   Column(
                                     children: [
                                       Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.height,
                                             color: Color(0xFF212121), //ISSO
                                             size: 16,
@@ -206,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   Container(
                                     height: 120,
-                                    child: VerticalDivider( //ISSO
+                                    child: const VerticalDivider( //ISSO
                                         color: Color(0xFFE0E0E0)),
                                   ),
                                   Column(
