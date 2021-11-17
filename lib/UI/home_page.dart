@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             print('Voltar a Tela Inicial');
                           },
                           iconSize: 32,
-                          icon: Icon(Icons.arrow_back_outlined),
+                          icon: const Icon(Icons.arrow_back_outlined),
                           color: Colors.white,
                         ),
                         Text(

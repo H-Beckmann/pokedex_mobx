@@ -6,10 +6,14 @@ part 'search_store.g.dart';
 class SearchStore = _SearchStoreBase with _$SearchStore;
 
 abstract class _SearchStoreBase with Store {
+  @observable
+  Future<List<String>> pokeNames = fetchNames();
+  @observable
+  Future<List<Pokemon>> pokeList = fetchAll(30);
   // @observable
   // String pokeNome = "";
   // @action
   // void setPokeNome(String value) => pokeNome = value;
   @action
-  Future<List<Pokemon>> pokeGet(String pokeNome) => pokeNome.isNotEmpty? fetchByName(pokeNome) : fetchAll(30);
+  Future<List<Pokemon>> pokeGet(String pokeNome) async => pokeNome.isNotEmpty? fetchByName(pokeNome) : fetchAll(30);
 }
