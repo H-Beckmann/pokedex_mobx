@@ -29,4 +29,11 @@ class myTextStyleBase {
     color: Color(0xFF666666),
     fontSize: 10.0,
   );
+  static final type_name = GoogleFonts.poppins(
+      color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold);
+  static final card_title = GoogleFonts.poppins(
+    color: Color(0xFFEE8130),
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+  );
 }
