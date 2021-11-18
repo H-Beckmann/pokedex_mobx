@@ -4,9 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pokedex_mobx/UI/home_page.dart';
 import 'package:pokedex_mobx/models/pokemon.dart';
 import 'package:pokedex_mobx/models/type_color.dart';
-import 'package:pokedex_mobx/repositories/pokemon_repository.dart';
 import 'package:pokedex_mobx/stores/searchStore/search_store.dart';
-import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class PokemonList extends StatefulWidget {
